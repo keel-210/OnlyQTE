@@ -8,14 +8,14 @@ public class NotePool : MonoBehaviour
 	public NotesManager manager;
 	List<Note> UsingNotes = new List<Note>();
 	List<Note> UsableNotes = new List<Note>();
-	public void PrepareNotes(NoteEnum NoteType, RectTransform t)
+	public void PrepareNotes(Note _n, RectTransform t)
 	{
 		if (UsableNotes.Count == 0)
 		{
 			GameObject obj = Instantiate(note);
 			Note n = obj.GetComponent<Note>();
 			UsingNotes.Add(n);
-			ActivateNote(n, NoteType, t);
+			ActivateNote(n, _n, t);
 		}
 		else
 		{
@@ -23,7 +23,7 @@ public class NotePool : MonoBehaviour
 			n.gameObject.SetActive(true);
 			UsingNotes.Add(n);
 			UsingNotes.RemoveAt(0);
-			ActivateNote(n, NoteType, t);
+			ActivateNote(n, _n, t);
 		}
 	}
 	public void Remove(Note n)
@@ -32,12 +32,13 @@ public class NotePool : MonoBehaviour
 		UsableNotes.Add(n);
 		n.gameObject.SetActive(false);
 	}
-	void ActivateNote(Note n, NoteEnum NoteType, RectTransform t)
+	void ActivateNote(Note n, Note _n, RectTransform t)
 	{
-        n.gameObject.SetActive(true);
+		n.gameObject.SetActive(true);
+		n.Time = _n.Time;
 		n.manager = manager;
-		n.NoteType = NoteType;
-        n.pool = this;
+		n.NoteType = _n.NoteType;
+		n.pool = this;
 		n.StartNote(t);
 	}
 }
