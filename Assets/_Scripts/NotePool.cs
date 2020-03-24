@@ -34,8 +34,10 @@ public class NotePool : MonoBehaviour
 	}
 	void ActivateNote(Note n, NoteEnum NoteType, RectTransform t)
 	{
+        n.gameObject.SetActive(true);
 		n.manager = manager;
 		n.NoteType = NoteType;
+        n.pool = this;
 		n.StartNote(t);
 	}
 }
