@@ -13,7 +13,7 @@ public class Note : MonoBehaviour
 		transform.position = t.position;
 		ISChecked = false;
 		transform.localScale = Vector3.one;
-		transform.DOScale(Vector3.one * 0.25f, 1f).SetEase(Ease.InCirc);
+		transform.DOScale(Vector3.one * 0.20f, 1f + manager.CheckRange / 1000f).SetEase(Ease.InCirc);
 	}
 	void Update()
 	{
@@ -25,6 +25,7 @@ public class Note : MonoBehaviour
 		if (manager.ManagedTime > Time + manager.CheckRange)
 		{
 			manager.RemoveCheck(this);
+			manager.Failed(this);
 			pool.Remove(this);
 		}
 	}

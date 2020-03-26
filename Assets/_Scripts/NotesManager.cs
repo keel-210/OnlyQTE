@@ -61,17 +61,27 @@ public class NotesManager : MonoBehaviour
 	void Perfect(Note n)
 	{
 		RemoveCheck(n);
+		Success(n);
 		Debug.Log("Perfect");
 	}
 	void Good(Note n)
 	{
 		RemoveCheck(n);
+		Success(n);
 		Debug.Log("Good");
 	}
 	void Bad(Note n)
 	{
 		RemoveCheck(n);
 		Debug.Log("Bad");
+	}
+	void Success(Note n)
+	{
+
+	}
+	public void Failed(Note n)
+	{
+
 	}
 	public void AddCheck(Note n)
 	{
